@@ -17,6 +17,14 @@ steps:
     versionSpec: '12.x'
   displayName: 'Instalando o Node.js na máquina'
 
+- task: CacheBeta@1
+  inputs:
+    key: cypress | $(Agent.OS) | package-lock.json
+    path: /home/vsts/.cache/Cypress
+    restoreKeys: cypress | $(Agent.OS) | package-lock.json
+  displayName: Cache Cypress binary
+
+
 - script: npm install
   displayName: 'Instalando as dependências do projeto'
 
